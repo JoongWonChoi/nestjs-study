@@ -1,0 +1,18 @@
+npm 설치
+nestjs 설치 npm i -g @nestjs/cli
+nestjs cli설치 (구조 제작 도움)
+
+nestjs 모듈이란?
+@Module 데코레이터로 주석이 달린 클래스!
+각 응용 프로그램에는 하나 이상으 ㅣ모듈이 필요
+App Module(root)이 하나 이상 필요
+모듈은 밀접하게 관련된 기능 집합으로 구성 요소를 구성
+모듈은 기본적으로 싱글톤
+
+프로바이더 : 종속성 주입
+
+
+모듈을 cli로 직접 설치 - nest g module boards
+컨트롤러 또한 - nest cli g controller boards --no-spec
+
+1:16
