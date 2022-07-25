@@ -45,6 +45,12 @@ export class BoardsController {
 
     }
 
+    @Get('/:id/title')
+    getBoardTitleById(@Param('id')id: number){
+        return this.boardsService.getBoardTitleById(id);
+
+    }
+
     // //DELETE
     // @Delete('/:id')
     // deleteBoard(@Param('id')id: string): void{

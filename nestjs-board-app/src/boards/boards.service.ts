@@ -1,18 +1,18 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { BoardStatus } from './board-status.enum';
 import { v1 as uuid } from 'uuid';
 import { CreateBoardDto } from './dto/create-board.dto';
-import { BoardRepository } from './board.repository';
+//import { BoardRepository } from './board.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Board } from './board.entity';
 import { stat } from 'fs';
-import { Any } from 'typeorm';
+import { Any, Repository } from 'typeorm';
 
 @Injectable() //다른 컴포넌트에서 이 서비스를 사용할 수 있게 해줌. 의존성 주입
 export class BoardsService {
     constructor(
-        @InjectRepository(BoardRepository)
-        private boardRepository: BoardRepository
+        @Inject('BOARD_REPOSITORY')
+        private boardRepository: Repository<Board>,
             ){}//생성자 의존성 주입
 
     //[ async - await ] :: DB에 접근 후 DB 작업이 끝난 후 결과값을 받을 수 있게 해주기
@@ -39,6 +39,16 @@ export class BoardsService {
             throw new NotFoundException(`cant find board with id ${id}`)
         }
         return found;
+    }
+
+    //게시물 제목 조회
+    async getBoardTitleById(id: number){
+        const found = await this.boardRepository.findOne({where :{id : id}});
+        if(!found){
+            throw new NotFoundException(`cant find board with id ${id}`)
+        }
+        const title = {"title":found.title};
+        return title;
     }
 
 

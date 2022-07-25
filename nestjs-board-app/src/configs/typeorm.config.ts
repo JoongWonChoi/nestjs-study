@@ -5,10 +5,10 @@ export const typeORMConfig : TypeOrmModuleOptions = {
     type : 'mysql',
     host: 'localhost',
     port : 3306,
-    username : 'user',
-    password : 'wnddnjs11@@',
+    username : 'root',
+    password : '1234',
     database : 'board-app',
-    entities : [__dirname + '/../**/*.entiti.{js,ts}'],
+    entities : [__dirname + '/../**/*.entity.{js,ts}'],
     synchronize : true
 }
 
